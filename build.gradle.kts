@@ -1,12 +1,14 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0-RC1"
+    id("org.jetbrains.kotlin.jvm") version "2.0.20"
     id("org.jetbrains.intellij") version "1.17.4"
-    kotlin("plugin.serialization") version "1.9.25"
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 group = "dev.codetime"
-version = "1.0.0"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -28,7 +30,9 @@ tasks {
         targetCompatibility = "17"
     }
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
     }
 
     patchPluginXml {
@@ -50,7 +54,8 @@ tasks {
 val ktorVersion: String by project
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    implementation("org.slf4j:slf4j-nop:2.0.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
 

@@ -15,7 +15,6 @@ class CodetimeConfigurable : Configurable {
 
     override fun createComponent(): JComponent {
         val token = CodetimePropertiesUtils.getToken()
-        val timeRange = CodetimePropertiesUtils.getTimeRange()
         // Main panel with border layout to keep everything at the top
         mainPanel = JPanel(BorderLayout())
 
