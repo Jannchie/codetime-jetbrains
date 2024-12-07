@@ -183,7 +183,7 @@ jobs:
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
   release:
-    name: Release Jar
+    name: Release Zip
     needs: [ build, verify ]
     runs-on: ubuntu-latest
     steps:
@@ -210,14 +210,14 @@ jobs:
         run: |
           output=$(./gradlew properties)
           version=$(echo "$output" | grep "^version:" | cut -d' ' -f2)
-          echo "Project version: $version-$GITHUB_RUN_NUMBER"
-          echo "::set-output name=project_version::$version-$GITHUB_RUN_NUMBER"
+          echo "Project version: $version"
+          echo "::set-output name=project_version::$version"
         env:
           project_version: ${{ steps.get_version.outputs.project_version }}
       - name: Download Content
         uses: actions/download-artifact@v4
         with:
-          name: Artifacts
+          name: plugin-artifact
       - name: Create release
         id: create-new-release
         uses: actions/create-release@v1
