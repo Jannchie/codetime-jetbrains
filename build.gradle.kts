@@ -70,13 +70,6 @@ intellijPlatform {
 
         ides {
             ide(IntelliJPlatformType.IntellijIdeaUltimate, "2024.3")
-            local(file("/path/to/ide/"))
-            select {
-                types = listOf(IntelliJPlatformType.PhpStorm)
-                channels = listOf(ProductRelease.Channel.RELEASE)
-                sinceBuild = "232"
-                untilBuild = "241.*"
-            }
         }
     }
 }
