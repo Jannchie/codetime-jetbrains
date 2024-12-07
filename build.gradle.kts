@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -70,7 +71,6 @@ intellijPlatform {
         ides {
             ide(IntelliJPlatformType.IntellijIdeaUltimate, "2024.3")
             local(file("/path/to/ide/"))
-            recommended()
             select {
                 types = listOf(IntelliJPlatformType.PhpStorm)
                 channels = listOf(ProductRelease.Channel.RELEASE)
@@ -83,10 +83,13 @@ intellijPlatform {
 dependencies {
     intellijPlatform {
         intellijIdeaUltimate("2024.3")
-        instrumentationTools()
-        jetbrainsRuntime()
-        pluginVerifier()
+        bundledPlugin("com.intellij.java")
 
+        pluginVerifier()
+        zipSigner()
+        instrumentationTools()
+
+        testFramework(TestFrameworkType.Platform)
     }
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
