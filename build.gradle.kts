@@ -9,8 +9,6 @@ plugins {
     kotlin("plugin.serialization") version "2.0.20"
 }
 
-group = "dev.codetime"
-version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -28,7 +26,6 @@ intellijPlatform {
     }
 }
 
-val ktorVersion: String by project
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
@@ -51,6 +48,7 @@ tasks {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
 }
+val ktorVersion: String by project
 
 intellijPlatform {
     // ...
