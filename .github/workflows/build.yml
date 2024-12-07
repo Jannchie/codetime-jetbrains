@@ -210,10 +210,12 @@ jobs:
         run: |
           output=$(./gradlew properties)
           version=$(echo "$output" | grep "^version:" | cut -d' ' -f2)
-          echo "Project version: $version"
+          echo "Project version: $version-$GITHUB_RUN_NUMBER"
           echo "::set-output name=project_version::$version"
+          echo "::set-output name=project_version_full::$version-$GITHUB_RUN_NUMBER"
         env:
           project_version: ${{ steps.get_version.outputs.project_version }}
+          project_version_full: ${{ steps.get_version.outputs.project_version_full }}
       - name: Download Content
         uses: actions/download-artifact@v4
         with:
@@ -224,8 +226,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.get_version.outputs.project_version }}
-          release_name: ${{ steps.get_version.outputs.project_name }} ${{ steps.get_version.outputs.project_version }}
+          tag_name: ${{ steps.get_version.outputs.project_version_full }}
+          release_name: ${{ steps.get_version.outputs.project_name }} ${{ steps.get_version.outputs.project_version_full }}
       - name: Upload asset to Release
         uses: actions/upload-release-asset@v1.0.2
         env:
@@ -233,5 +235,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-new-release.outputs.upload_url }}
           asset_path: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}.zip
-          asset_name: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version }}.zip
+          asset_name: ${{ steps.get_name.outputs.project_name }}-${{ steps.get_version.outputs.project_version_full }}.zip
           asset_content_type: application/zip
