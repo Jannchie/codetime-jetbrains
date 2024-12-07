@@ -65,7 +65,7 @@ dependencies {
         intellijIdeaUltimate("2024.3")
         instrumentationTools()
         jetbrainsRuntime()
-
+        pluginVerifier()
     }
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
