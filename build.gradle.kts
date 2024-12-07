@@ -1,14 +1,11 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
-import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.0.20"
     id("org.jetbrains.intellij.platform") version "2.1.0"
-    id("com.gradleup.shadow") version "8.3.5"
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -43,10 +40,6 @@ tasks {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
-    prepareSandbox {
-        dependsOn(shadowJar)
-        from(shadowJar)
-    }
 
     signPlugin {
         certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
@@ -56,9 +49,6 @@ tasks {
 
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
-    }
-    shadowJar {
-        archiveClassifier.set("")
     }
 }
 
