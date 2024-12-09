@@ -38,7 +38,4 @@ Visit our website for more information: <a href="https://codetime.dev">CodeTime.
         />
     </extensions>
 
-    <applicationListeners>
-
-    </applicationListeners>
 </idea-plugin>

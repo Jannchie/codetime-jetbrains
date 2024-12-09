@@ -22,7 +22,7 @@ repositories {
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellijPlatform {
     pluginConfiguration {
-        name = "Code Time"
+        name = "CodeTime"
     }
 }
 
