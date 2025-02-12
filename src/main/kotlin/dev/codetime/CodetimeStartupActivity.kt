@@ -13,7 +13,7 @@ import com.intellij.openapi.vfs.VirtualFile
 import dev.codetime.utils.getGitBranchName
 import dev.codetime.utils.getGitOriginUrl
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.http.*
@@ -70,7 +70,7 @@ class CodetimeStartupActivity : ProjectActivity {
             )
             val json = Json.encodeToString(EventLog.serializer(), eventLog)
             val token = CodetimePropertiesUtils.getToken()
-            val client = HttpClient(CIO) {
+            val client = HttpClient(OkHttp) {
                 defaultRequest {
                     header("token", token)
                 }

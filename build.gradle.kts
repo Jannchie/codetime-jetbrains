@@ -75,7 +75,6 @@ dependencies {
     implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-cio:$ktorVersion")
-
+    implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
 }
 
