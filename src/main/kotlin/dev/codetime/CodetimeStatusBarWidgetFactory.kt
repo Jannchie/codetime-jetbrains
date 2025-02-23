@@ -12,7 +12,7 @@ import com.intellij.openapi.wm.impl.status.TextPanel
 import dev.codetime.utils.getDurationText
 import dev.codetime.utils.getMinutes
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
+import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -87,7 +87,7 @@ class CodetimeStatusBarWidgetFactory : StatusBarWidgetFactory {
                         panel.text = "⏰ CodeTime: Loading..."
                         try {
                             val url = "https://api.codetime.dev/user/minutes?minutes=$minutesParam"
-                            val client = HttpClient(CIO) {
+                            val client = HttpClient(OkHttp) {
                                 defaultRequest {
                                     header("token", token)
                                 }
