@@ -24,6 +24,10 @@ repositories {
 intellijPlatform {
     pluginConfiguration {
         name = "CodeTime"
+        ideaVersion {
+            untilBuild = provider { null }
+            sinceBuild = "2024.3"
+        }
     }
 }
 
@@ -46,10 +50,6 @@ tasks {
     }
 
 
-    withType<PatchPluginXmlTask> {
-        sinceBuild.set("243")
-        untilBuild.set("251.*")
-    }
 
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
