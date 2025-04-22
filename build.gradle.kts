@@ -26,7 +26,7 @@ intellijPlatform {
         name = "CodeTime"
         ideaVersion {
             untilBuild = provider { null }
-            sinceBuild = "243.*"
+            sinceBuild = "231"
         }
     }
 }
