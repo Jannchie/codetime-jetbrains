@@ -72,10 +72,10 @@ class CodetimeStartupActivity : ProjectActivity {
             val token = CodetimePropertiesUtils.getToken()
             val client = HttpClient(OkHttp) {
                 defaultRequest {
-                    header("token", token)
+                    header("Authorization", "Bearer $token")
                 }
             }
-            client.post("https://api.codetime.dev/eventLog") {
+            client.post("https://api.codetime.dev/v3/users/event-log") {
                 contentType(io.ktor.http.ContentType.Application.Json)
                 setBody(json)
             }

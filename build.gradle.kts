@@ -64,13 +64,13 @@ intellijPlatform {
         // ...
 
         ides {
-            ide(IntelliJPlatformType.IntellijIdeaUltimate, "2024.3")
+            ide(IntelliJPlatformType.IntellijIdeaCommunity, "2024.3")
         }
     }
 }
 dependencies {
     intellijPlatform {
-        intellijIdeaUltimate("2024.3")
+        intellijIdeaCommunity("2024.3")
         bundledPlugin("com.intellij.java")
 
         pluginVerifier()

@@ -86,10 +86,10 @@ class CodetimeStatusBarWidgetFactory : StatusBarWidgetFactory {
                     } else {
                         panel.text = "⏰ CodeTime: Loading..."
                         try {
-                            val url = "https://api.codetime.dev/user/minutes?minutes=$minutesParam"
+                            val url = "https://api.codetime.dev/v3/users/self/minutes?minutes=$minutesParam"
                             val client = HttpClient(OkHttp) {
                                 defaultRequest {
-                                    header("token", token)
+                                    header("Authorization", "Bearer $token")
                                 }
                             }
                             val response: HttpResponse = client.get(url)
